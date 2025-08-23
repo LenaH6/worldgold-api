@@ -7,8 +7,9 @@ export default async function handler(req, res) {
   }
   if (req.method !== "POST") return res.status(405).end();
 
-  // 🔴 PARCHE TEMPORAL: sin validar con Worldcoin (solo para seguir probando el front)
+  // 🔴 PARCHE TEMPORAL — esto evita el 500 para que puedas seguir probando
   res.setHeader("Access-Control-Allow-Origin", "*");
   return res.status(200).json({ ok: true, note: "TEMP_FAKE_VERIFY" });
 }
+
 
