@@ -2,7 +2,6 @@
   "name": "worldgold-api",
   "private": true,
   "type": "module",
-  "version": "1.0.0",
   "dependencies": {
     "@worldcoin/idkit": "2.2.0"
   }
