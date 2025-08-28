@@ -16,6 +16,7 @@ export default async function handler(req, res){
     }
 
     // === helpers (definidos aquí para evitar problemas de import) ===
+    import crypto from "crypto";
     const SECRET = process.env.WGG_SECRET || "dev-secret-change-me";
     const signState = (o) => {
       const data = Buffer.from(JSON.stringify(o)).toString("base64url");
