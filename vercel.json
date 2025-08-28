@@ -1,4 +1,10 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "routes": [
+    { "src": "/terminos", "dest": "/terminos.html" },
+    { "src": "/privacidad", "dest": "/privacidad.html" }
+  ]
 }
+
 
