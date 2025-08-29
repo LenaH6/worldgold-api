@@ -1,35 +1,47 @@
-# worldgold-api
+# WorldGold API
 
-Backend mínimo para WorldGold (Vercel). Incluye:
+Backend para la miniapp **WorldGold** (World App).  
+Incluye endpoints para verificación de World ID, pagos y manejo de taps.
 
-- `POST /api/verify` — valida el proof de World ID (MiniKit.verify).
-- `POST /api/pay/confirm` — registra pagos exitosos (MiniKit.pay).
-
-## Deploy rápido (Vercel)
-
-1. Sube este repo a GitHub (o importa el ZIP y crea un repo).
-2. Entra a https://vercel.com → **Add New Project** → conecta el repo.
-3. En **Settings → Environment Variables** agrega:
-
-```
-WORLDCOIN_APP_ID=app_33bb8068826b85d4cd56d2ec2caba7cc
-WORLDCOIN_APP_SECRET=TU_SECRET_DEL_PORTAL
-```
-
-4. Deploy. Obtendrás una URL como `https://worldgold-api.vercel.app`.
+---
 
 ## Endpoints
 
-### POST /api/verify
-Body: el `finalPayload` devuelto por `MiniKit.commandsAsync.verify(...)`
+- `POST /api/verify` → Valida el proof de World ID.
+- `POST /api/pay/confirm` → Registra pagos exitosos.
+- `POST /api/tapBatch` → Aplica taps y devuelve nuevo estado (energía, WLD, WLGp).
 
-Responde `200 { ok: true }` si la verificación es válida.
+Todos los endpoints responden JSON y tienen CORS habilitado para el frontend.
 
-### POST /api/pay/confirm
-Body: el objeto que retorna `MiniKit.commandsAsync.pay(...)`
+---
 
-Responde `200 { ok: true }`
+## Variables de entorno (solo en Vercel)
 
-## CORS
-Ambos endpoints devuelven `Access-Control-Allow-Origin: *` para permitir llamadas desde GitHub Pages.
+Configúralas en **Vercel → Project → Settings → Environment Variables**:
+
+WORLDCOIN_APP_ID=app_33bb8068826b85d4cd56d2ec2caba7cc
+WORLDCOIN_APP_SECRET=xxxx
+WGG_SECRET=xxxx
+
+## Despliegue
+
+Este backend está pensado para **Vercel**.  
+Ya está publicado en:
+
+https://worldgold-api-o87j.vercel.app
+
+Usa esa URL en el frontend para llamar a:  
+- `/api/verify`  
+- `/api/pay/confirm`  
+- `/api/tapBatch`
+
+---
+
+## Seguridad
+
+- Los tokens de estado se firman (HMAC) en el servidor (`tapBatch.js`).  
+- La verificación World ID se hace con `WORLDCOIN_APP_ID` y `WORLDCOIN_APP_SECRET` guardados en **variables de entorno**.  
+- No se almacenan datos biométricos ni información sensible de usuarios.
+
+
 
