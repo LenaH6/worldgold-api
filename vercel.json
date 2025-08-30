@@ -5,6 +5,23 @@
     { "src": "/terminos", "dest": "/terminos.html" },
     { "src": "/privacidad", "dest": "/privacidad.html" }
   ]
+
+  ,
+"headers": [
+  {
+    "source": "/terminos",
+    "headers": [
+      { "key": "Cache-Control", "value": "no-store, no-cache, must-revalidate" }
+    ]
+  },
+  {
+    "source": "/privacidad",
+    "headers": [
+      { "key": "Cache-Control", "value": "no-store, no-cache, must-revalidate" }
+    ]
+  }
+]
+
 }
 
 
